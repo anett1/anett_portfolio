@@ -1,14 +1,17 @@
 import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 import "./styles/MenuButton.less";
 
-export default class MenuButton extends Component {
+class MenuButton extends Component {
   render() {
-    const { isActive, children } = this.props;
+    const { children, href, location } = this.props;
+    const isActive = location.pathname === href;
     const className = `menu-button ${isActive ? "menu-button-active" : null}`;
     return (
       <li className={className}>
-        <button>{children}</button>
+        <Link to={href}>{children}</Link>
       </li>
     );
   }
 }
+export default withRouter(MenuButton);
